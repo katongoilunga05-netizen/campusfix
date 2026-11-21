@@ -12,4 +12,6 @@ Campus maintenance requests for ICT251, Mulungushi University.
 | `activity8-integration` | 8 | The same interface, reading and writing through the API. |
 | `documentation` | — | Requirements, API guide, tests, and deployment notes. |
 
-Activity 6 is published from `activity6-frontend`. Activity 8 must point at the live API before it is published. Do not replace the Activity 6 site with the Activity 8 folder.
+Activity 6 is live at https://katongoilunga05-netizen.github.io/campusfix/
+
+That address is the one to submit for Activity 6. It is the `gh-pages` branch, which contains only `activity6-frontend`. Activity 8 must point at the live API before it is published. Do not replace the Activity 6 site with the Activity 8 folder.

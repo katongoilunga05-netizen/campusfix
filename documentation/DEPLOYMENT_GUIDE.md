@@ -1,7 +1,13 @@
 # Deployment guide
 
 **Student:** Katongo Ilunga, 202508737  
-**Status:** the three sites run on this computer. They are not on public URLs yet, so the assignment is not ready to submit.
+**Status:** Activity 6 is public. Activity 7 and Activity 8 still run on this computer only.
+
+Activity 6 live URL:
+
+https://katongoilunga05-netizen.github.io/campusfix/
+
+The brief names Netlify. This copy is on GitHub Pages because that account was already signed in, and Activity 6 is due on 21 November 2026. The same `activity6-frontend` folder can be dragged into Netlify later if the lecturer requires that host. Keep this URL working either way.
 
 The briefs ask for three different addresses:
 

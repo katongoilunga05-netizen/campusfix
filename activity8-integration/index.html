@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusFix – Campus Maintenance Requests</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <p class="brand">CampusFix</p>
+      <p class="brand-sub">Maintenance desk</p>
+      <nav aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#manage">Manage Records</a>
+        <a href="#about">About</a>
+      </nav>
+    </aside>
+
+    <div class="page">
+      <header class="topbar">
+        <p class="eyebrow">Mulungushi University · ICT251</p>
+        <h1>CampusFix</h1>
+        <p class="lede">Report broken lights, taps, furniture, and other campus faults. Track each request from pending to completed.</p>
+      </header>
+
+      <main id="main-content">
+        <section id="home" aria-labelledby="home-heading">
+          <h2 id="home-heading">Dashboard</h2>
+          <p>These figures count every request stored by the CampusFix API.</p>
+          <div class="stat-grid">
+            <article class="stat-card">
+              <p class="stat-label">Total requests</p>
+              <p class="stat-value" id="stat-total">0</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-label">Pending</p>
+              <p class="stat-value" id="stat-pending">0</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-label">In progress</p>
+              <p class="stat-value" id="stat-progress">0</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-label">Completed</p>
+              <p class="stat-value" id="stat-completed">0</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="manage" aria-labelledby="manage-heading">
+          <h2 id="manage-heading">Manage Records</h2>
+          <div class="record-grid">
+            <form id="record-form" class="panel" novalidate>
+              <h3 id="form-heading">Add a request</h3>
+              <p id="editing-note" hidden>Editing request <strong id="editing-id"></strong>. The id cannot be changed.</p>
+              <p id="form-message" class="message" role="status" aria-live="polite"></p>
+
+              <div class="field">
+                <label for="field-title">Title</label>
+                <input id="field-title" name="title" type="text" maxlength="80" required>
+              </div>
+
+              <div class="field">
+                <label for="field-category">Category</label>
+                <select id="field-category" name="category" required>
+                  <option value="">Select a category</option>
+                  <option>Electrical</option>
+                  <option>Plumbing</option>
+                  <option>Furniture</option>
+                  <option>Infrastructure</option>
+                  <option>Cleaning</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="field-description">Description</label>
+                <textarea id="field-description" name="description" rows="4" maxlength="300" required></textarea>
+              </div>
+
+              <div class="field">
+                <label for="field-status">Status</label>
+                <select id="field-status" name="status" required>
+                  <option value="">Select a status</option>
+                  <option>Pending</option>
+                  <option>In progress</option>
+                  <option>Completed</option>
+                </select>
+              </div>
+
+              <div class="form-actions">
+                <button id="save-button" type="submit">Add request</button>
+                <button id="cancel-edit" type="button" hidden>Cancel edit</button>
+              </div>
+            </form>
+
+            <div class="panel">
+              <h3>Requests</h3>
+              <p id="loading-message">Loading records...</p>
+              <div class="filters">
+                <div class="field">
+                  <label for="search-title">Search by title</label>
+                  <input id="search-title" type="search" placeholder="Type part of a title">
+                </div>
+                <div class="field">
+                  <label for="filter-status">Filter by status</label>
+                  <select id="filter-status">
+                    <option value="">All statuses</option>
+                    <option>Pending</option>
+                    <option>In progress</option>
+                    <option>Completed</option>
+                  </select>
+                </div>
+              </div>
+              <p id="result-count" class="result-count">Showing 0 requests</p>
+              <p id="empty-message" class="empty-message" hidden>No maintenance requests yet. Add one with the form.</p>
+              <div class="table-wrap">
+                <table class="record-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="record-rows"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" aria-labelledby="about-heading">
+          <h2 id="about-heading">About</h2>
+          <div class="panel about-panel">
+            <p><strong>Project:</strong> CampusFix – Campus Maintenance Management System</p>
+            <p><strong>Student:</strong> Katongo Ilunga</p>
+            <p><strong>Student number:</strong> 202508737</p>
+            <p>Add a request with the form. Use View to read the full record, Edit to change it, and Delete to remove it after you confirm. Search by title or filter by status. The count shows how many requests match.</p>
+            <p>This page reads and writes maintenance requests through the CampusFix API. The database keeps those records after a refresh and on another device. This version does not store requests in browser local storage.</p>
+            <p><a id="api-guide-link" href="http://127.0.0.1:3000/">Open the API guide</a></p>
+            <p><a id="health-link" href="http://127.0.0.1:3000/health">Open the health check</a></p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>CampusFix · Katongo Ilunga · ICT251 Web Technologies · Mulungushi University</p>
+      </footer>
+    </div>
+  </div>
+
+  <dialog id="view-dialog" aria-labelledby="view-heading">
+    <h2 id="view-heading">Request details</h2>
+    <dl class="detail-list">
+      <div><dt>ID</dt><dd id="view-id"></dd></div>
+      <div><dt>Title</dt><dd id="view-title"></dd></div>
+      <div><dt>Category</dt><dd id="view-category"></dd></div>
+      <div><dt>Description</dt><dd id="view-description"></dd></div>
+      <div><dt>Status</dt><dd id="view-status"></dd></div>
+    </dl>
+    <button type="button" id="view-close">Close</button>
+  </dialog>
+
+  <dialog id="delete-dialog" aria-labelledby="delete-heading">
+    <h2 id="delete-heading">Delete this request?</h2>
+    <p id="delete-summary"></p>
+    <div class="dialog-actions">
+      <button type="button" id="delete-cancel">Cancel</button>
+      <button type="button" id="delete-confirm" class="danger">Delete request</button>
+    </div>
+  </dialog>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
